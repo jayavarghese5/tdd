@@ -6,8 +6,5 @@ Functions/Methods
 2. Print area of Triangle 
      Formula : Area of Triangle =0.5 * Breadth * Height.
      
-# Build
-https://github.com/jayavarghese5/tdd/workflows/JavaCIwithMavenTddExample/badge.svg
-     
-# Test status
-https://github.com/jayavarghese5/tdd/workflows/RunTestsWithMaven/badge.svg
+# Build status
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/jayavarghese5/tdd/JavaCIwithMavenTddExample)     
