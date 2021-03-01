@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.simplemath.Calculate;
-
+import com.simplemath.Triangle;
 
 
 public class CalculateTest {
@@ -21,17 +21,32 @@ public class CalculateTest {
 	@Test
 	public void printNumbersTest() {
 		int limit=10;		
-		Assert.assertTrue("The limit is not correct", calculation.printNumbers(limit));
+		Assert.assertTrue("Success", calculation.printValues(limit));
 	}
 	
 	/**
 	 * Negative test to check if the IllegalArgumentException is thrown when given wrong input
 	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void printNumberWrongInputTest() {	
-		Assert.assertTrue("The limit is not correct", calculation.printNumbers(-10));
+	@Test
+	public void printNumberNegativeTest() {	
+		Assert.assertFalse("The limit is not correct", calculation.printValues(-10));
 	}
 	
+	/**
+	 * Negative test to check if the IllegalArgumentException is thrown when given wrong input
+	 */
+	@Test
+	public void printNumberwithZeroAsInput() {	
+		Assert.assertFalse("The limit is not correct", calculation.printValues(0));
+	}
+		
+	/**
+	 * Negative test to check if the IllegalArgumentException is thrown when given wrong input
+	 */
+	@Test
+	public void printNumberwithOneAsInput() {	
+		Assert.assertTrue("The limit is not correct", calculation.printValues(1));
+	}
 	/**
 	 * Positive test to check , Area of triangle
 	 */
@@ -40,18 +55,20 @@ public class CalculateTest {
 		double breadth=3.0;
 		double height=4.0;
 		double area= 0.5 *breadth * height;
-		double returnValue=calculation.areaOfTriangle(breadth,height);
+		Triangle triangle=new Triangle(breadth,height);
+		double returnValue=calculation.calculateArea(triangle);
 		System.out.println("Area of triagle with breadth : "+breadth+" height :"+height+" is "+returnValue);
 		Assert.assertEquals(area, returnValue,0.0);
 	}
+	
 	
 	/**
 	 * Negative test to check if the IllegalArgumentException is thrown when given wrong input
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void areaOfTriangleWithNegativeInputTest() {
-		double returnValue=calculation.areaOfTriangle(0,4);
-		System.out.println(" Return value="+returnValue);
-		Assert.assertEquals(0, returnValue,0.0);
+		Triangle triangle=new Triangle(-2.0,4.0);
+		calculation.calculateArea(triangle);
 	}
+	
 }
